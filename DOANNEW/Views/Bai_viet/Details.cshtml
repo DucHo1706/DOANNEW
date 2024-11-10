@@ -1,0 +1,53 @@
+﻿@model DOANNEW.Models.Bai_viet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bai_viet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+         Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+
+        <dt>
+           Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+           Hình ảnh
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh_Anh)
+        </dd>
+
+        <dt>
+           Danh mục
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Danh_Muc.TenDanhMuc)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BaiVietID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

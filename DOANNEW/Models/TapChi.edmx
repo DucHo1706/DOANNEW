@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TAPCHI2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bai_viet">
+          <Key>
+            <PropertyRef Name="BaiVietID" />
+          </Key>
+          <Property Name="BaiVietID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DanhMucID" Type="int" />
+          <Property Name="Hinh_Anh" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Binh_luan">
+          <Key>
+            <PropertyRef Name="BinhLuanID" />
+          </Key>
+          <Property Name="BinhLuanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BaiVietID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Danh_Muc">
+          <Key>
+            <PropertyRef Name="DanhMucID" />
+          </Key>
+          <Property Name="DanhMucID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersRole">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bai_viet__DanhMu__31EC6D26">
+          <End Role="Danh_Muc" Type="Self.Danh_Muc" Multiplicity="0..1" />
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Danh_Muc">
+              <PropertyRef Name="DanhMucID" />
+            </Principal>
+            <Dependent Role="Bai_viet">
+              <PropertyRef Name="DanhMucID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bai_viet__UserID__32E0915F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bai_viet">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Binh_luan__BaiVi__35BCFE0A">
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Binh_luan" Type="Self.Binh_luan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bai_viet">
+              <PropertyRef Name="BaiVietID" />
+            </Principal>
+            <Dependent Role="Binh_luan">
+              <PropertyRef Name="BaiVietID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Binh_luan__UserI__36B12243">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Binh_luan" Type="Self.Binh_luan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Binh_luan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__RoleI__2C3393D0">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UsersRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersRole__UserI__2B3F6F97">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TAPCHI2ModelStoreContainer">
+          <EntitySet Name="Bai_viet" EntityType="Self.Bai_viet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Binh_luan" EntityType="Self.Binh_luan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Danh_Muc" EntityType="Self.Danh_Muc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRole" EntityType="Self.UsersRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bai_viet__DanhMu__31EC6D26" Association="Self.FK__Bai_viet__DanhMu__31EC6D26">
+            <End Role="Danh_Muc" EntitySet="Danh_Muc" />
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bai_viet__UserID__32E0915F" Association="Self.FK__Bai_viet__UserID__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Binh_luan__BaiVi__35BCFE0A" Association="Self.FK__Binh_luan__BaiVi__35BCFE0A">
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+            <End Role="Binh_luan" EntitySet="Binh_luan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Binh_luan__UserI__36B12243" Association="Self.FK__Binh_luan__UserI__36B12243">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Binh_luan" EntitySet="Binh_luan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__RoleI__2C3393D0" Association="Self.FK__UsersRole__RoleI__2C3393D0">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRole" EntitySet="UsersRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersRole__UserI__2B3F6F97" Association="Self.FK__UsersRole__UserI__2B3F6F97">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRole" EntitySet="UsersRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TAPCHI2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bai_viet">
+          <Key>
+            <PropertyRef Name="BaiVietID" />
+          </Key>
+          <Property Name="BaiVietID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DanhMucID" Type="Int32" />
+          <Property Name="Hinh_Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Danh_Muc" Relationship="Self.FK__Bai_viet__DanhMu__31EC6D26" FromRole="Bai_viet" ToRole="Danh_Muc" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Bai_viet__UserID__32E0915F" FromRole="Bai_viet" ToRole="Users" />
+          <NavigationProperty Name="Binh_luan" Relationship="Self.FK__Binh_luan__BaiVi__35BCFE0A" FromRole="Bai_viet" ToRole="Binh_luan" />
+        </EntityType>
+        <EntityType Name="Binh_luan">
+          <Key>
+            <PropertyRef Name="BinhLuanID" />
+          </Key>
+          <Property Name="BinhLuanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BaiVietID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bai_viet" Relationship="Self.FK__Binh_luan__BaiVi__35BCFE0A" FromRole="Binh_luan" ToRole="Bai_viet" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Binh_luan__UserI__36B12243" FromRole="Binh_luan" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Danh_Muc">
+          <Key>
+            <PropertyRef Name="DanhMucID" />
+          </Key>
+          <Property Name="DanhMucID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhMuc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bai_viet" Relationship="Self.FK__Bai_viet__DanhMu__31EC6D26" FromRole="Danh_Muc" ToRole="Bai_viet" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.UsersRole" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Bai_viet" Relationship="Self.FK__Bai_viet__UserID__32E0915F" FromRole="Users" ToRole="Bai_viet" />
+          <NavigationProperty Name="Binh_luan" Relationship="Self.FK__Binh_luan__UserI__36B12243" FromRole="Users" ToRole="Binh_luan" />
+          <NavigationProperty Name="Roles" Relationship="Self.UsersRole" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Bai_viet__DanhMu__31EC6D26">
+          <End Role="Danh_Muc" Type="Self.Danh_Muc" Multiplicity="0..1" />
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Danh_Muc">
+              <PropertyRef Name="DanhMucID" />
+            </Principal>
+            <Dependent Role="Bai_viet">
+              <PropertyRef Name="DanhMucID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bai_viet__UserID__32E0915F">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Bai_viet">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Binh_luan__BaiVi__35BCFE0A">
+          <End Role="Bai_viet" Type="Self.Bai_viet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Binh_luan" Type="Self.Binh_luan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bai_viet">
+              <PropertyRef Name="BaiVietID" />
+            </Principal>
+            <Dependent Role="Binh_luan">
+              <PropertyRef Name="BaiVietID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Binh_luan__UserI__36B12243">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Binh_luan" Type="Self.Binh_luan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Binh_luan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersRole">
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TAPCHI2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bai_viet" EntityType="Self.Bai_viet" />
+          <EntitySet Name="Binh_luan" EntityType="Self.Binh_luan" />
+          <EntitySet Name="Danh_Muc" EntityType="Self.Danh_Muc" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Bai_viet__DanhMu__31EC6D26" Association="Self.FK__Bai_viet__DanhMu__31EC6D26">
+            <End Role="Danh_Muc" EntitySet="Danh_Muc" />
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bai_viet__UserID__32E0915F" Association="Self.FK__Bai_viet__UserID__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Binh_luan__BaiVi__35BCFE0A" Association="Self.FK__Binh_luan__BaiVi__35BCFE0A">
+            <End Role="Bai_viet" EntitySet="Bai_viet" />
+            <End Role="Binh_luan" EntitySet="Binh_luan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Binh_luan__UserI__36B12243" Association="Self.FK__Binh_luan__UserI__36B12243">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Binh_luan" EntitySet="Binh_luan" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRole" Association="Self.UsersRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TAPCHI2ModelStoreContainer" CdmEntityContainer="TAPCHI2Entities">
+          <EntitySetMapping Name="Bai_viet">
+            <EntityTypeMapping TypeName="TAPCHI2Model.Bai_viet">
+              <MappingFragment StoreEntitySet="Bai_viet">
+                <ScalarProperty Name="BaiVietID" ColumnName="BaiVietID" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="DanhMucID" ColumnName="DanhMucID" />
+                <ScalarProperty Name="Hinh_Anh" ColumnName="Hinh_Anh" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Binh_luan">
+            <EntityTypeMapping TypeName="TAPCHI2Model.Binh_luan">
+              <MappingFragment StoreEntitySet="Binh_luan">
+                <ScalarProperty Name="BinhLuanID" ColumnName="BinhLuanID" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="BaiVietID" ColumnName="BaiVietID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Danh_Muc">
+            <EntityTypeMapping TypeName="TAPCHI2Model.Danh_Muc">
+              <MappingFragment StoreEntitySet="Danh_Muc">
+                <ScalarProperty Name="DanhMucID" ColumnName="DanhMucID" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TAPCHI2Model.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TAPCHI2Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersRole" TypeName="TAPCHI2Model.UsersRole" StoreEntitySet="UsersRole">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DOANNEW.Models.Danh_Muc>
+
+
+
+<ul style="list-style-type: none;" id="div-u">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="div-cate">
+                @Html.ActionLink(item.TenDanhMuc, "DanhSachList", "Bai_viet", new { Danhmuc = item.DanhMucID }, null)
+            </li>
+
+        }
+    }
+</ul> 

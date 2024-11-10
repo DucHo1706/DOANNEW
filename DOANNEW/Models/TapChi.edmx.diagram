@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="41f772386a434323873c2f2cc8b6f75d" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="TAPCHI2Model.Bai_viet" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAPCHI2Model.Binh_luan" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAPCHI2Model.Danh_Muc" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAPCHI2Model.Role" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAPCHI2Model.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="TAPCHI2Model.FK__Bai_viet__DanhMu__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="TAPCHI2Model.FK__Bai_viet__UserID__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="TAPCHI2Model.FK__Binh_luan__BaiVi__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="TAPCHI2Model.FK__Binh_luan__UserI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="TAPCHI2Model.UsersRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

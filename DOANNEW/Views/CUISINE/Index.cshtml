@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DOANNEW.Models.Bai_viet>
+
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var article in Model)
+    {
+        <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card-pro">
+                <img src="~/Content/IMG/@article.Hinh_Anh" width="200" height="250" />
+                <p>@Html.DisplayFor(model => article.TieuDe)</p>
+                <p> <font color="red">@Html.DisplayFor(model => article.NoiDung)</font></p>
+            </div>
+        </div>
+    }
+</div>

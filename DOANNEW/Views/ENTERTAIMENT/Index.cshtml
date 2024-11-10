@@ -1,0 +1,188 @@
+﻿@model IEnumerable<DOANNEW.Models.Bai_viet>
+<link href="https://fonts.cdnfonts.com/css/vogue" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Federo&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Pompiere&family=Prata&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Slabo+27px&display=swap" rel="stylesheet">
+<link href="~/Content/CSS-ENTER/entertainment.css" rel="stylesheet" />
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <img src="~/Content/IMG/banner-enter.jpg" width="100%" style="margin-top:10px;margin-bottom:10px" />
+</div>
+<div class="hot-news">
+    Added New Artical
+</div>
+
+@foreach (var article in Model)
+{
+    <div class="container-Entertainment">
+        <div class="image">
+            <img src="~/Content/IMG/@article.Hinh_Anh" width="200" height="250" />
+        </div>
+        <div class="Content">
+            <p>@Html.DisplayFor(model => article.TieuDe)</p>
+            <p> <font color="red">@Html.DisplayFor(model => article.NoiDung)</font></p>
+        </div>
+
+    </div>
+}
+<div class="hot-news">
+    Music
+</div>
+
+<div class="container-Entertainment">
+    <div class="image">
+
+        <img src="~/Content/IMG/bruno and rose.jpg" />
+    </div>
+    <div class="Content">
+        <h1 class="title"><b>Rosé and Bruno Mars’s New Single ‘Apt.’ Is a Pop-Punk Delight</b></h1>
+        <p>
+            It’s been three long years since the world last heard from Rosé. In 2021, the Blackpink member embarked on her first-ever solo project, R, featuring the singles “On the Ground” and “Gone.” An instant hit, it thrived not only on Rosé’s K-pop fame, but also the strength and versaility of her honied vocals, here applied to indie-rock and electro-pop sounds.
+        </p>
+    </div>
+</div>
+<div class="celeb-more">
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/afterhours.jpg" alt="The Weeknd" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>The Weeknd's 'After Hours' Lyrics Seem to Be About His Deep Regrets Leaving Bella Hadid</h2>
+            <p>
+                The Weeknd released the third single off his upcoming album After Hours at midnight
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/ladygaga.jpg" alt="Lady Gaga" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Lady Gaga’s ‘Disease’ Music Video Is Downright Haunting</h2>
+            <p>
+                It’s been years since we’ve seen a Lady Gaga video in full glory.
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/one deriction.jpg" alt="One Deriction" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>All 5 of One Direction’s Albums Return to Billboard 200 Chart </h2>
+            <p>
+                The group's five full-lengths, from 2012-15, return to the chart after Payne's death on Oct. 16.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="hot-news">
+    Performance
+</div>
+<div class="container-Entertainment">
+    <div class="Content">
+        <h1 class="title"><b>Billie Eilish Hit Me Hard And Soft Tour </b></h1>
+        <p>
+            Billie Eilish will hit the road once again on her just-announced Hit Me Hard and Soft: The Tour, which kicks off in arenas this fall.
+        </p>
+    </div>
+    <div class="image">
+
+        <img src="~/Content/IMG/hit.jpg" />
+    </div>
+</div>
+<div class="celeb-more">
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/lana.jpg" alt="LanaChella" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Lana Del Rey headlines first night of Coachella</h2>
+            <p>
+                Lana Del Rey’s headlining performance at Coachella this past Friday demonstrates the singer’s affinity for glamourized aesthetics and serves as her attempt to reinvent her image.
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/the weeknd show.jpg" alt="After Hours til Dawn Tour" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>After Hours Til Dawn Tour: Artistic Creation</h2>
+            <p>
+                This tour's extensive "scenic" features include 17 custom-carved scale buildings, a hard-coated main stage with integrated lighting, laser and pyro treatments
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/superbowl.jpg" alt="Rihanna Performace SuperBowl" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Rihanna’s 2023 Super Bowl Halftime Show Is Now the Most-Watched of All Time</h2>
+            <p>
+                Rihanna‘s Super Bowl LVII Halftime Show is officially the most-watched halftime show performance of all time, according to an adjusted Nielsen report Tuesday (May 2)
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-Entertainment-beyonce">
+    <div class="image-beyonce">
+        <img src="~/Content/IMG/taylor-kayne.jpg" />
+    </div>
+    <div class="Content-beyonce">
+        <h1 class="title-beyonce"><b>Is Ye Defending Taylor Swift From Beyonce?</b></h1>
+
+        <p class="Sub-Beyonce">Thank You Beyonce</p>
+    </div>
+</div>
+<div class="celeb-more">
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/lisa.jpg" alt="LaLisa" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Lisa’s Victoria’s Secret Fashion Show Look Comes Straight From the VS Archives</h2>
+            <p>
+                With an all-women performing lineup that includes BLACKPINK’s LISA, the iconic Victoria’s Secret Fashion Show is back in 2024
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/she know.jpg" alt="Thank Beyonce" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Why is Internet ‘thanking’ Beyonce all of a sudden? ‘She knows’ viral TikTok trend explained</h2>
+            <p>
+                While one side of the Internet is accusing Beyonce of sharing suspicious connections with Diddy, Beyhive is bent on defending her against the ‘smear campaign.’
+            </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="img-fashion">
+
+            <img src="~/Content/IMG/billie.jpg" alt="Grammy" class="fm-img" />
+        </div>
+        <div class="Content-fashion">
+            <h2>Billie Eilish’s Grammy Wins: How Many She’s Won & For What </h2>
+            <p>
+                Billie Eilish is 'happier than ever' because she's a multiple-Grammy winner. Find out how many awards the 'Bad Guy' artist has received and what she's nominated for in 2024
+            </p>
+        </div>
+    </div>
+</div>

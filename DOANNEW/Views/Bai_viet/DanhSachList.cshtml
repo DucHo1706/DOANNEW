@@ -1,0 +1,27 @@
+﻿
+@model IEnumerable<DOANNEW.Models.Bai_viet>
+@{
+    ViewBag.Title = "DanhSachList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DanhSachList</h2>
+
+@foreach (var pro in Model)
+{
+    <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card-pro">
+           <table>
+               <tr>
+                   <td>
+                       <img src="~/Content/IMG/@pro.Hinh_Anh" width="200" height="250" />
+                   </td>
+               </tr>
+               <tr><td> <p>@Html.DisplayFor(model => pro.TieuDe)</p></td></tr>
+              
+               
+               <tr><td><p> <font color="red">@Html.DisplayFor(model => pro.NoiDung)</font></p></td></tr>
+           </table>
+        </div>
+    </div>
+} 
